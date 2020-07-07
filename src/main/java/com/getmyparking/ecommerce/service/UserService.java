@@ -20,6 +20,7 @@ public class UserService {
             throw new IllegalArgumentException("User " + user.getName() + " already exists");
         }
         userRepository.getUsers().put(user.getName(), user);
+        System.out.println("User added and logged in");
         System.out.println("User Repository: " + userRepository.getUsers());
     }
 
@@ -28,11 +29,23 @@ public class UserService {
     }
 
     public void login(String name) {
-        userRepository.getUsers().get(name).setLoggedIn(true);
+        User user = userRepository.getUsers().get(name);
+        if (user != null) {
+            user.setLoggedIn(true);
+            System.out.println("User logged in");
+        } else {
+            System.out.println("User not found");
+        }
     }
 
     public void logout(String name) {
-        userRepository.getUsers().get(name).setLoggedIn(false);
+        User user = userRepository.getUsers().get(name);
+        if (user != null) {
+            user.setLoggedIn(false);
+            System.out.println("User logged out");
+        } else {
+            System.out.println("User not found");
+        }
     }
 
     public boolean checkAdmin() {

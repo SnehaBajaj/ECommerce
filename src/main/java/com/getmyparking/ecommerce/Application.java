@@ -19,22 +19,16 @@ public class Application {
         ProductController productController = context.getBean(ProductController.class);
         CartController cartController = context.getBean(CartController.class);
 
-        int option;
-        while(true) {
-            System.out.println("Options:\n" +
-                    "1. Sign-up a new user\n" +
-                    "2. Log-in\n" +
-                    "3. Log-out\n" +
-                    "4. Add products\n" +
-                    "5. Update products\n" +
-                    "6. Delete products\n" +
-                    "7. Browse products\n" +
-                    "8. Add product to cart\n" +
-                    "9. View cart\n" +
-                    "10. Checkout\n" +
-                    "11. Exit");
-            Scanner sc = new Scanner(System.in);
-            option = sc.nextInt();
+        int option = 0;
+        while (true) {
+            try {
+                displayMenu();
+                Scanner sc = new Scanner(System.in);
+                option = sc.nextInt();
+            } catch (Exception e) {
+                // log error
+                option = 0;
+            }
             switch (option) {
                 case 1:
                     userController.createUser();
@@ -72,8 +66,21 @@ public class Application {
                 default:
                     System.out.println("Please enter an option between 1 to 11");
             }
-
         }
+    }
 
+    private static void displayMenu() {
+        System.out.println("Options:\n" +
+                "1. Sign-up a new user\n" +
+                "2. Log-in\n" +
+                "3. Log-out\n" +
+                "4. Add products\n" +
+                "5. Update products\n" +
+                "6. Delete products\n" +
+                "7. Browse products\n" +
+                "8. Add product to cart\n" +
+                "9. View cart\n" +
+                "10. Checkout\n" +
+                "11. Exit");
     }
 }
