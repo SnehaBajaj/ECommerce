@@ -20,7 +20,7 @@ public class Application {
         CartController cartController = context.getBean(CartController.class);
 
         int option;
-        do {
+        while(true) {
             System.out.println("Options:\n" +
                     "1. Sign-up a new user\n" +
                     "2. Log-in\n" +
@@ -69,9 +69,11 @@ public class Application {
                 case 11:
                     System.out.println("Thank you for using SellMyProduct");
                     return;
+                default:
+                    System.out.println("Please enter an option between 1 to 11");
             }
 
-        } while (option > 0 && option < 11);
+        }
 
     }
 }
